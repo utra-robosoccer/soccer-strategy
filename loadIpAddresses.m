@@ -5,12 +5,12 @@ clear;
 rosshutdown;
 
 % Gazebo IP address
-gazeboIp = '100.65.212.128';
+gazeboIp = '100.64.71.19';
 
-% Turtlebot IP address
-soccerbotIp = '100.65.212.128';
+setenv('ROS_MASTER_URI',stcat('http://', gazeboIP, '100.65.212.128:11311'))
+rosinit(gazeboIp)
 
-setenv('ROS_MASTER_URI','http://100.65.212.128:11311')
-setenv('ROS_IP','100.64.199.237')
+% d = rosdevice(gazeboIp,'vuwij','sh961013');
+% system('kill', cmdout);
 
-rosinit('100.65.212.128', 'NodeHost', '100.64.199.237')
+% rosgenmsg('../soccer_ws/src/soccer_msgs')
