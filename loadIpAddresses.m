@@ -1,14 +1,15 @@
 %% Modify the IP addresses of your ROS enabled robots/simulators here
 % Copyright 2017 The MathWorks, Inc.
 
-clear;
 rosshutdown;
 
 % Gazebo IP address
-gazeboIp = '100.64.71.19';
+gazeboIp = '192.168.42.207';
+localIp = '192.168.42.243';
 
-setenv('ROS_MASTER_URI',stcat('http://', gazeboIP, '100.65.212.128:11311'))
-rosinit(gazeboIp)
+setenv('ROS_IP', localIp)
+setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))
+rosinit(gazeboIp, 'NodeHost', localIp)
 
 % d = rosdevice(gazeboIp,'vuwij','sh961013');
 % system('kill', cmdout);
