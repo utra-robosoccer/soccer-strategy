@@ -14,3 +14,5 @@ for i=1:20
     getUpFrontTraj(:,i) = smooth(getUpFrontTraj(:,i), 0.1);
 end
 plot(getUpFrontTrajTime, getUpFrontTraj)
+
+customState = zeros(1,20);
