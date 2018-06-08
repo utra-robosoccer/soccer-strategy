@@ -2,6 +2,8 @@
 % Copyright 2017 The MathWorks, Inc.
 
 rosshutdown;
+addpath('fixed_trajectories')
+addpath('dynamic_trajectories')
 
 % Gazebo IP address
 gazeboIp = '100.65.212.128';
