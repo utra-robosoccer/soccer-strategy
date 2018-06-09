@@ -6,8 +6,8 @@ addpath('fixed_trajectories')
 addpath('dynamic_trajectories')
 
 % Gazebo IP address
-gazeboIp = '192.168.2.21';
-localIp = '192.168.2.14';
+gazeboIp = '100.65.215.48';
+localIp = '100.64.199.237';
 
 setenv('ROS_IP', localIp)
 setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))
