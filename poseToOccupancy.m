@@ -1,9 +1,10 @@
-function [xCor, yCor] = poseToOccupancy(pose)
-    % Map size is 9 x 6 meters where x is 6 meters and y is 3 meters
+function [coord] = poseToOccupancy(pose)
+    % Map size is 9 x 6 meters where x is 6 meters and y is 9 meters
     xPose = pose.x + 3;
     yPose = pose.y + 4.5;
-    xCor = int32(round(xPose * 10));
-    yCor = int32(round(yPose * 10)); % Use decimeters
+    
+    xCor = xPose * 10;
+    yCor = yPose * 10; % Use decimeters
     
     if xCor < 0
         xCor = 0;
@@ -20,4 +21,6 @@ function [xCor, yCor] = poseToOccupancy(pose)
     
     xCor = xCor + 1;
     yCor = yCor + 1;
+    
+    coord = [xCor yCor];
 end
