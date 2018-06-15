@@ -39,7 +39,7 @@ getUpBackTrajStatus(end) = 1;
 % plot(getUpBackTrajTime, getUpBackTraj)
 
 % Custom State
-% customState = zeros(1,20);
+customState = zeros(1,20);
 
 % Resting
 load('fixed_trajectories/resting.mat');

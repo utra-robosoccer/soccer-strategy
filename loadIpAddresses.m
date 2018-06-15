@@ -4,10 +4,11 @@
 rosshutdown;
 addpath('fixed_trajectories')
 addpath('dynamic_trajectories')
+addpath('soccer-vision')
 
 % Gazebo IP address
-gazeboIp = '100.65.215.48';
-localIp = '100.64.199.237';
+gazeboIp = '192.168.0.105';
+localIp = '192.168.0.102';
 
 setenv('ROS_IP', localIp)
 setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))
