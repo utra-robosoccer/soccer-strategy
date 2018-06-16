@@ -7,8 +7,8 @@ addpath('dynamic_trajectories')
 addpath('soccer-vision')
 
 % Gazebo IP address
-gazeboIp = '192.168.0.105';
-localIp = '192.168.0.102';
+gazeboIp = '100.65.216.233';
+localIp = '100.64.197.9';
 
 setenv('ROS_IP', localIp)
 setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))

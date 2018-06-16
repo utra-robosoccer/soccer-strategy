@@ -9,7 +9,7 @@ walkTrajStatus = zeros(1,length(walkTraj));
 walkTrajStatus(end) = 1;
 
 % Get Up From Front
-load('fixed_trajectories/getUpFrontWayPoints.mat');
+% load('fixed_trajectories/getUpFrontWayPoints.mat');
 [l,~] = size(getUpFrontWayPoints);
 t = linspace(0, 30, l); % 7 seconds to getup
 getUpFrontTrajTime = 0:0.01:30;
@@ -26,7 +26,7 @@ getUpFrontTrajStatus(end) = 1;
 % Get Up From Back
 load('fixed_trajectories/getUpBackWayPoints.mat');
 [l,~] = size(getUpBackWayPoints);
-t = linspace(0, 30, l); % 7 seconds to getup
+t = linspace(0, 15, l); % 7 seconds to getup
 getUpBackTrajTime = 0:0.01:10;
 getUpBackTraj = spline(t, getUpBackWayPoints', getUpBackTrajTime);
 getUpBackTraj = getUpBackTraj';
@@ -39,7 +39,7 @@ getUpBackTrajStatus(end) = 1;
 % plot(getUpBackTrajTime, getUpBackTraj)
 
 % Custom State
-customState = zeros(1,20);
+% customState = zeros(1,20);
 
 % Resting
 load('fixed_trajectories/resting.mat');
