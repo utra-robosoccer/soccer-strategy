@@ -7,12 +7,22 @@ addpath('dynamic_trajectories')
 addpath('soccer-vision')
 
 % Gazebo IP address
-gazeboIp = '192.168.2.182';
-localIp = '192.168.2.241';
+gazeboIp = '172.20.10.7';
+robotIp = '172.20.10.4';
+localIp = '172.20.10.2';
 
-setenv('ROS_IP', localIp)
-setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))
-rosinit(gazeboIp, 'NodeHost', localIp)
+useRobot = 1;
+
+if useRobot
+    setenv('ROS_IP', localIp)
+    setenv('ROS_MASTER_URI',strcat('http://', robotIp, ':11311'))
+    rosinit(robotIp, 'NodeHost', localIp)
+else
+    setenv('ROS_IP', localIp)
+    setenv('ROS_MASTER_URI',strcat('http://', gazeboIp, ':11311'))
+    rosinit(gazeboIp, 'NodeHost', localIp)
+end
+
 
 % d = rosdevice(gazeboIp,'vuwij','sh961013');
 % system('kill', cmdout);

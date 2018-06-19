@@ -3,6 +3,18 @@
 % Motor Calibration
 motorCalibration = [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0];
 
+%% Poses
+
+% Custom State
+%customState = zeros(1,20);
+
+% Resting
+load('fixed_trajectories/resting.mat');
+resting = resting';
+
+% Preparewalk
+load('fixed_trajectories/prepareWalk.mat');
+
 %% Standard Fixed Trajectories
 
 % Walking Motion
@@ -13,16 +25,28 @@ walkTrajStatus = zeros(1,length(walkTraj));
 walkTrajStatus(end-10:end) = 1;
 
 % Get Up From Front
-load('fixed_trajectories/getUpFrontWayPoints.mat');
+%load('fixed_trajectories/getUpFrontWayPoints.mat');
 [l,~] = size(getUpFrontWayPoints);
-t = linspace(0, 12, l); % # seconds to getup
-getUpFrontTrajTime = 0:0.01:12;
+t = linspace(0, 3.5, l); % # seconds to getup
+getUpFrontTrajTime = 0:0.01:3.5;
 getUpFrontTraj = spline(t, getUpFrontWayPoints', getUpFrontTrajTime);
 getUpFrontTraj = getUpFrontTraj';
 getUpFrontTraj(length(getUpFrontTraj),20) = 0;
 for i=1:20
     getUpFrontTraj(:,i) = smooth(getUpFrontTraj(:,i), 0.1);
 end
+getUpFrontTrajTest = getUpFrontTraj';
+temp = getUpFrontTrajTest(1:6,:);
+getUpFrontTrajTest(1,:) = temp(6,:);
+getUpFrontTrajTest(2,:) = temp(5,:);
+getUpFrontTrajTest(3,:) = temp(4,:);
+getUpFrontTrajTest(4,:) = temp(3,:);
+getUpFrontTrajTest(5,:) = temp(2,:);
+getUpFrontTrajTest(6,:) = temp(1,:);
+getUpFrontTrajTest = round(getUpFrontTrajTest, 3);
+
+
+
 getUpFrontTrajStatus = zeros(1,length(getUpFrontTraj));
 getUpFrontTrajStatus(end-10:end) = 1;
 % plot(getUpFrontTrajTime, getUpFrontTraj)
@@ -67,15 +91,4 @@ findBallTrajTime = 0:0.01:length(findBallTraj)*0.01 - 0.01;
 findBallTrajStatus = zeros(1,length(findBallTraj));
 findBallTrajStatus(end-10:end) = 1;
 
-
-%% Poses
-
-% Custom State
-customState = zeros(1,20);
-
-% Resting
-load('fixed_trajectories/resting.mat');
-
-% Preparewalk
-load('fixed_trajectories/prepareWalk.mat');
 
