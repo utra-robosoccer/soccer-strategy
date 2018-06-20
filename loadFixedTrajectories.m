@@ -52,10 +52,10 @@ getUpFrontTrajStatus(end-10:end) = 1;
 % plot(getUpFrontTrajTime, getUpFrontTraj)
 
 % Get Up From Back
-load('fixed_trajectories/getUpBackWayPoints.mat');
+% load('fixed_trajectories/getUpBackWayPoints.mat');
 [l,~] = size(getUpBackWayPoints);
-t = linspace(0, 4, l); % 3 seconds to getup
-getUpBackTrajTime = 0:0.01:4;
+t = linspace(0, 5, l); % 3 seconds to getup
+getUpBackTrajTime = 0:0.01:5;
 getUpBackTraj = spline(t, getUpBackWayPoints', getUpBackTrajTime);
 getUpBackTraj = getUpBackTraj';
 getUpBackTraj(length(getUpBackTraj),20) = 0;
@@ -64,7 +64,17 @@ for i=1:20
 end
 getUpBackTrajStatus = zeros(1,length(getUpBackTraj));
 getUpBackTrajStatus(end-10:end) = 1;
-% plot(getUpBackTrajTime, getUpBackTraj)
+
+getUpBackTrajTest = getUpBackTraj';
+temp = getUpBackTrajTest(1:6,:);
+getUpBackTrajTest(1,:) = temp(6,:);
+getUpBackTrajTest(2,:) = temp(5,:);
+getUpBackTrajTest(3,:) = temp(4,:);
+getUpBackTrajTest(4,:) = temp(3,:);
+getUpBackTrajTest(5,:) = temp(2,:);
+getUpBackTrajTest(6,:) = temp(1,:);
+getUpBackTrajTest = round(getUpBackTrajTest, 3);
+
 
 % PrepareToWalkAnimation
 prepareToWalkTrajTime = 0:0.01:3; % 3 seconds
