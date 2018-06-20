@@ -27,13 +27,13 @@ walkTrajStatus(end-10:end) = 1;
 % Get Up From Front
 %load('fixed_trajectories/getUpFrontWayPoints.mat');
 [l,~] = size(getUpFrontWayPoints);
-t = linspace(0, 3.5, l); % # seconds to getup
-getUpFrontTrajTime = 0:0.01:3.5;
+t = linspace(0, 8, l); % # seconds to getup
+getUpFrontTrajTime = 0:0.01:8;
 getUpFrontTraj = spline(t, getUpFrontWayPoints', getUpFrontTrajTime);
 getUpFrontTraj = getUpFrontTraj';
-getUpFrontTraj(length(getUpFrontTraj),20) = 0;
+getUpFrontTraj(length(getUpFrontTraj),10) = 0;
 for i=1:20
-    getUpFrontTraj(:,i) = smooth(getUpFrontTraj(:,i), 0.1);
+    getUpFrontTraj(:,i) = smooth(getUpFrontTraj(:,i), 0.02);
 end
 getUpFrontTrajTest = getUpFrontTraj';
 temp = getUpFrontTrajTest(1:6,:);

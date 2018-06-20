@@ -7,9 +7,12 @@ addpath('dynamic_trajectories')
 addpath('soccer-vision')
 
 % Gazebo IP address
-gazeboIp = '172.20.10.7';
-robotIp = '172.20.10.4';
-localIp = '172.20.10.2';
+% gazeboIp = '172.20.10.7';
+% robotIp = '172.20.10.4';
+% localIp = '172.20.10.2';
+% gazeboIp = '172.20.10.7';
+robotIp = '192.168.2.74';
+localIp = '192.168.2.241';
 
 useRobot = 1;
 
@@ -26,4 +29,4 @@ end
 
 % d = rosdevice(gazeboIp,'vuwij','sh961013');
 % system('kill', cmdout);
-% rosgenmsg('../soccer_ws/src/soccer_msgs')
+% rosgenmsg('soccer_msgs')
