@@ -6,7 +6,7 @@ motorCalibration = [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0];
 %% Poses
 
 % Custom State
-%customState = zeros(1,20);
+customState = zeros(1,20);
 
 % Resting
 load('fixed_trajectories/resting.mat');
@@ -25,7 +25,7 @@ walkTrajStatus = zeros(1,length(walkTraj));
 walkTrajStatus(end-10:end) = 1;
 
 % Get Up From Front
-%load('fixed_trajectories/getUpFrontWayPoints.mat');
+load('fixed_trajectories/getUpFrontWayPoints.mat');
 [l,~] = size(getUpFrontWayPoints);
 t = linspace(0, 8, l); % # seconds to getup
 getUpFrontTrajTime = 0:0.01:8;
@@ -52,7 +52,7 @@ getUpFrontTrajStatus(end-10:end) = 1;
 % plot(getUpFrontTrajTime, getUpFrontTraj)
 
 % Get Up From Back
-% load('fixed_trajectories/getUpBackWayPoints.mat');
+load('fixed_trajectories/getUpBackWayPoints.mat');
 [l,~] = size(getUpBackWayPoints);
 t = linspace(0, 5, l); % 3 seconds to getup
 getUpBackTrajTime = 0:0.01:5;

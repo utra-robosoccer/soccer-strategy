@@ -8,11 +8,11 @@ addpath('soccer-vision')
 
 % Gazebo IP address
 % gazeboIp = '172.20.10.7';
-% robotIp = '172.20.10.4';
-% localIp = '172.20.10.2';
+robotIp = '192.168.43.160';
+localIp = '192.168.43.169';
 % gazeboIp = '172.20.10.7';
-robotIp = '192.168.2.74';
-localIp = '192.168.2.241';
+% robotIp = '192.168.2.74';
+% localIp = '192.168.2.241';
 
 useRobot = 1;
 
