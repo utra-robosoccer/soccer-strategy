@@ -5,8 +5,8 @@ addpath('../soccer-control')
 addpath('../soccer-vision')
 
 % IP Addresses for robots
-localIp = '100.64.37.135';
-gazeboIp = '100.64.45.11';
+localIp = '192.168.2.14';
+gazeboIp = '192.168.2.54';
 robotIp = '172.20.10.4';
 
 useRobot = 0;
