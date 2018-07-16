@@ -30,6 +30,10 @@ octave-workspace
 # Others
 .DS_Store
 slprj
-soccerbot_ert_rtw/
+soccer_strategy_ert_rtw/
 Icon?
 soccer_msgs/matlab_gen
+soccer)strategy_
+
+*.slxc
+*.tgz
