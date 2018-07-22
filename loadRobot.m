@@ -7,6 +7,9 @@ addpath('../soccer-utility')
 % Connect Robot
 connectRobot;
 
+% Sample Time
+sampleTime = 0.01;
+
 % Calibration
 motorCalibration = [0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0];
 

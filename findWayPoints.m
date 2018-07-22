@@ -25,26 +25,26 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
     path = findpath(prm, curPosAdj, destPosAdj);
     show(prm)
     
-    % Removed jagged edges
-    pathsmooth = [movmean(path(:,1),3), movmean(path(:,2),3)]
-    
     % Downsample and smooth the path
-    originalSpacing = 1:length(pathsmooth(:,1));
-    finerSpacing = 1:0.1:length(pathsmooth(:,1));
-    splineXY = spline(originalSpacing, pathsmooth', finerSpacing);
-    downSplineXY = downsample(splineXY', int32(length(pathsmooth(:,1))/1.1))';
+    originalSpacing = 1:length(path(:,1));
+    finerSpacing = 1:0.1:length(path(:,1));
+    splineXY = spline(originalSpacing, path', finerSpacing);
+    plot(splineXY(1,:),splineXY(2,:));
+    
+    % Smooth after downsampling
+    pathsmooth = [movmean(splineXY(1,:),50); movmean(splineXY(2,:),50)];
     
     % Find the angles between each downsample
     velocity = 2; % 5 seconds per decimeter
     
-    plot(downSplineXY(1,:),downSplineXY(2,:));
-    waypoints = zeros(length(downSplineXY)-1, 6);
-    for i=1:length(downSplineXY)-1
-       waypoints(i,1) = downSplineXY(1,i+1);
-       waypoints(i,2) = downSplineXY(2,i+1);
+    plot(pathsmooth(1,:),pathsmooth(2,:));
+    waypoints = zeros(length(pathsmooth)-1, 6);
+    for i=1:length(pathsmooth)-1
+       waypoints(i,1) = pathsmooth(1,i+1);
+       waypoints(i,2) = pathsmooth(2,i+1);
        waypoints(i,3) = 0;
-       waypoints(i,4) = atan2(downSplineXY(2,i+1)-downSplineXY(2,i), downSplineXY(1,i+1)-downSplineXY(1,i));
+       waypoints(i,4) = atan2(pathsmooth(2,i+1)-pathsmooth(2,i), pathsmooth(1,i+1)-pathsmooth(1,i));
        waypoints(i,5) = 0.04;
-       waypoints(i,6) = norm([downSplineXY(1,i+1)-downSplineXY(1,i), downSplineXY(2,i+1)-downSplineXY(2,i)]) * velocity;
+       waypoints(i,6) = norm([pathsmooth(1,i+1)-pathsmooth(1,i), pathsmooth(2,i+1)-pathsmooth(2,i)]) * velocity;
     end
 end
