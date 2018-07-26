@@ -37,4 +37,4 @@ soccer)strategy_
 
 *.slxc
 *.tgz
-build_ros_model.sh
+*.sh
