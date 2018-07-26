@@ -1,4 +1,6 @@
-function poseActionList = wayPointsToPoseActionList(waypoints)
+function poseActionList = wayPointsToPoseActionList(waypoints, speed)
+    % Speed in m/s
+
     [l,~] = size(waypoints);
     poseActionList = cell(l,1);
     for i = 1:l
@@ -6,5 +8,12 @@ function poseActionList = wayPointsToPoseActionList(waypoints)
         actionLabel = Command.ActionLabel.Forward;
         duration = 1;
         poseActionList{i} = PoseAction(pose, actionLabel, duration);        
+    end
+    
+    for i = 2:l
+        xdelta = poseActionList{i}.Pose.x - poseActionList{i-1}.Pose.x;
+        ydelta = poseActionList{i}.Pose.y - poseActionList{i-1}.Pose.y;
+        distance = sqrt(xdelta * xdelta + ydelta * ydelta);
+        poseActionList{i}.Duration = distance / speed;
     end
 end

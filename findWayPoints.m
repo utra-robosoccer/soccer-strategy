@@ -29,22 +29,20 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
     originalSpacing = 1:length(path(:,1));
     finerSpacing = 1:0.1:length(path(:,1));
     splineXY = spline(originalSpacing, path', finerSpacing);
-    plot(splineXY(1,:),splineXY(2,:));
     
     % Smooth after downsampling
     pathsmooth = [movmean(splineXY(1,:),50); movmean(splineXY(2,:),50)];
     
     % Find the angles between each downsample
-    velocity = 2; % 5 seconds per decimeter
-    
+    hold on;
     plot(pathsmooth(1,:),pathsmooth(2,:));
-    waypoints = zeros(length(pathsmooth)-1, 6);
+    waypoints = zeros(length(pathsmooth)-1, 5);
     for i=1:length(pathsmooth)-1
        waypoints(i,1) = pathsmooth(1,i+1);
        waypoints(i,2) = pathsmooth(2,i+1);
        waypoints(i,3) = 0;
        waypoints(i,4) = atan2(pathsmooth(2,i+1)-pathsmooth(2,i), pathsmooth(1,i+1)-pathsmooth(1,i));
        waypoints(i,5) = 0.04;
-       waypoints(i,6) = norm([pathsmooth(1,i+1)-pathsmooth(1,i), pathsmooth(2,i+1)-pathsmooth(2,i)]) * velocity;
     end
+    hold off;
 end
