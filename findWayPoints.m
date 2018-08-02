@@ -44,5 +44,12 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
        waypoints(i,4) = atan2(pathsmooth(2,i+1)-pathsmooth(2,i), pathsmooth(1,i+1)-pathsmooth(1,i));
        waypoints(i,5) = 0.04;
     end
+    
+    % Add start and end position
+    startPosition = [ curPose.x curPose.y curPose.z waypoints(1,4)   waypoints(1,5)];
+    endPosition   = [ destPos.x destPos.y destPos.z waypoints(end,4) waypoints(end,5)];
+    
+    waypoints = [startPosition; waypoints; endPosition];
+    
     hold off;
 end
