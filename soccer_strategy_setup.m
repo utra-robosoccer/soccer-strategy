@@ -1,8 +1,5 @@
 % Load Paths
-addpath('fixed_trajectories')
-addpath('../soccer-control')
-addpath('../soccer-vision')
-addpath('../soccer-utility')
+addpath('soccer-strategy/fixed_trajectories')
 
 % Connect Robot
 connectRobot;
