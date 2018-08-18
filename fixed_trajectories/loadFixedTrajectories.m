@@ -1,7 +1,9 @@
 Ts = 0.01; % Sample Time
 
 % Poses
-load('poses.mat')
+if ~exist('manual', 'var')
+    load('poses.mat')
+end
 
 % Animations
 load('animations.mat')
@@ -10,12 +12,12 @@ load('animations.mat')
 [getupbackspline, getupbacksmooth] = createFixedTrajectory(getUpBackWayPoints, Ts, 5, 0.1);
 
 % Pose Transitions
-standingtoready = changePoseTrajectory(standing, ready, Ts, 3);
-readytostanding = changePoseTrajectory(ready, standing, Ts, 3);
+standingtoready = changePoseTrajectory(standing, ready, Ts, 10);
+readytostanding = changePoseTrajectory(ready, standing, Ts, 10);
 
 % Customized Transitions
 headNoddingTrajectory = createHeadNoddingTrajectory(ready);
 headShakingTrajectory = createHeadShakingTrajectory(ready);
 
-customTrajectory = timeseries([customPose;customPose], [0;0]);
+customTrajectory = timeseries([manual;manual], [0;0]);
 

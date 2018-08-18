@@ -1,5 +1,5 @@
 function trajectory = changePoseTrajectory(startPose, endPose, Ts, duration) 
-    t = [0 Ts];
+    t = [0 duration];
     tsmooth = 0:Ts:duration; % 3 seconds
     trajectoryPoints = [startPose; endPose];
     traj = spline(t, trajectoryPoints', tsmooth)';
