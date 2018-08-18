@@ -19,5 +19,6 @@ readytostanding = changePoseTrajectory(ready, standing, Ts, 10);
 headNoddingTrajectory = createHeadNoddingTrajectory(ready);
 headShakingTrajectory = createHeadShakingTrajectory(ready);
 
-customTrajectory = timeseries([manual;manual], [0;0]);
-
+if ~exist('customTrajectory', 'var')
+    customTrajectory = timeseries([manual;manual], [0;0]);
+end
