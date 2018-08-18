@@ -27,12 +27,19 @@
 
 function waypoints = RRTStar(curPos, destPos, obst)
 
+x_max = 60;
+y_max = 90;
+EPS = 2; %step size
+numNodes = 500;
+inflateObs = 2;
+
 if nargin == 3
     num_obstacles = length(obst);
     obstacles = cell(1, num_obstacles);
     
     for i = 1 : num_obstacles
-        obstacles{i} = [poseToOccupancy(obst{i}) 15 15];
+        coord = int32(poseToOccupancy(obst{i}));
+        obstacles{i} = [coord(1)-inflateObs y_max-coord(2)-inflateObs inflateObs*2 inflateObs*2];
     end
 else
     num_obstacles = [];
@@ -42,11 +49,7 @@ end
 % curPos = [0 0];
 % destPos = [999 999];
 % obstacle = [500,150,200,200];
-
-x_max = 60;
-y_max = 90;
-EPS = 20;
-numNodes = 500;        
+       
 
 q_start.coord = curPos;
 q_start.cost = 0;
@@ -96,7 +99,7 @@ for i = 1:1:numNodes
         
         % Within a radius of r, find all existing nodes
         q_nearest = [];
-        r = 60;
+        r = 2;
         neighbor_count = 1;
         for j = 1:1:length(nodes)
             if noCollision(nodes(j).coord, q_new.coord, obstacles) && dist(nodes(j).coord, q_new.coord) <= r

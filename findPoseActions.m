@@ -1,5 +1,5 @@
 
-function poseActionList = findPoseActions(curPose, destPose, obstacles)
+function trajectory = findPoseActions(curPose, destPose, obstacles)
 
 speed = 0.01; % m/s
 
@@ -14,7 +14,8 @@ speed = 0.01; % m/s
 waypoints = findWayPoints(curPose, destPose, obstacles);
 grid on;
 
+figure
 poseActionList = wayPointsToPoseActionList(waypoints, speed);
-run(poseActionList);
+trajectory = run(poseActionList);
 
 end

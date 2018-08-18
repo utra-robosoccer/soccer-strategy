@@ -24,11 +24,11 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
     destPosAdj = (poseToOccupancy(destPos));
     
     % Method 1
-    path = findpath(prm, curPosAdj, destPosAdj);
-    show(prm)
+%     path = findpath(prm, curPosAdj, destPosAdj);
+%     show(prm)
     
     % Method 2
-    %path = RRTStar(curPosAdj, destPosAdj, obstacles);
+    path = RRTStar(curPosAdj, destPosAdj, obstacles);
     
     
     % Downsample and smooth the path
