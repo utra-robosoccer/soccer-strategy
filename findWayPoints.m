@@ -18,7 +18,7 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
     prm = robotics.PRM;
     prm.Map = mapInflated;
     prm.NumNodes = 500;
-    prm.ConnectionDistance = 6;
+    prm.ConnectionDistance = 3;
     
     curPosAdj = (poseToOccupancy(curPose));
     destPosAdj = (poseToOccupancy(destPos));

@@ -1,4 +1,4 @@
-curPose = Pose(0,0,0,0,0);
+curPose = Pose(0,1,10,0,0);
 destPose = Pose(0.5,0,0,0,0);
 
 obs1 = Pose(1.3,1.3,0,0,0);
@@ -22,7 +22,7 @@ dh = [
          0         0         0      pi/2
          0         0    0.0253         0
 ];
-body_height = 0.099 + 0.16;
+body_height = 0.17;%0.099 + 0.16;
 body.depth = 0.1305;
 body.height = 0.152;
 body.width = 0.145;
