@@ -22,16 +22,15 @@
 % 7. Add q_new to node list.
 % 8. Continue until maximum number of nodes is reached or goal is hit.
 
-% clearvars
-% close all
-
 function waypoints = RRTStar(curPos, destPos, obst)
+
 
 x_max = 60;
 y_max = 90;
-EPS = 2; %step size
+EPS = 2; % step size
 numNodes = 500;
 inflateObs = 2;
+r = 2; % find all existing nodes with in radius r
 
 if nargin == 3
     num_obstacles = length(obst);
@@ -50,7 +49,6 @@ end
 % destPos = [999 999];
 % obstacle = [500,150,200,200];
        
-
 q_start.coord = curPos;
 q_start.cost = 0;
 q_start.parent = 0;
@@ -99,7 +97,6 @@ for i = 1:1:numNodes
         
         % Within a radius of r, find all existing nodes
         q_nearest = [];
-        r = 2;
         neighbor_count = 1;
         for j = 1:1:length(nodes)
             if noCollision(nodes(j).coord, q_new.coord, obstacles) && dist(nodes(j).coord, q_new.coord) <= r
