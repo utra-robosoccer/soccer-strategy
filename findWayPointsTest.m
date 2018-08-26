@@ -1,4 +1,4 @@
-curPose = Pose(0,1,10,0,0);
+curPose = Pose(0,0,10,0,0);
 destPose = Pose(0.5,0,0,0,0);
 
 obs1 = Pose(1.3,1.3,0,0,0);

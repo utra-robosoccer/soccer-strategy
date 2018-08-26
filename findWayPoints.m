@@ -1,8 +1,5 @@
-function waypoints = findWayPoints(curPose, destPos, obstacles)
-    if ~exist('fieldOccupancy','var')
-        % Create the occupancy map for the first time
-        field = createMap;
-    end
+function [waypoints, mapInflated] = findWayPoints(curPose, destPos, obstacles)
+    field = createMap;
     
     if nargin == 3            
         for i = 1 : length(obstacles)
@@ -11,12 +8,9 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
         end
     end
     
-    map = robotics.OccupancyGrid(field);
-    mapInflated = copy(map);
+    mapInflated = robotics.BinaryOccupancyGrid(field);
     inflate(mapInflated, 2);
-    show(mapInflated)
-    prm = robotics.PRM;
-    prm.Map = mapInflated;
+    prm = robotics.PRM(mapInflated);
     prm.NumNodes = 500;
     prm.ConnectionDistance = 3;
     
@@ -25,7 +19,7 @@ function waypoints = findWayPoints(curPose, destPos, obstacles)
     
     % Method 1
     path = findpath(prm, curPosAdj, destPosAdj);
-    show(prm)
+%     show(prm)
     
     % Method 2
 %     path = RRTStar(curPosAdj, destPosAdj, obstacles);
