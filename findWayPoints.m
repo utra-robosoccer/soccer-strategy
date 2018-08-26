@@ -8,11 +8,11 @@ function [waypoints, mapInflated] = findWayPoints(curPose, destPos, obstacles)
         end
     end
     
-    mapInflated = robotics.BinaryOccupancyGrid(field);
+    mapInflated = robotics.OccupancyGrid(field);
     inflate(mapInflated, 2);
     prm = robotics.PRM(mapInflated);
     prm.NumNodes = 500;
-    prm.ConnectionDistance = 3;
+    prm.ConnectionDistance = 8;
     
     curPosAdj = (poseToOccupancy(curPose));
     destPosAdj = (poseToOccupancy(destPos));
@@ -35,7 +35,7 @@ function [waypoints, mapInflated] = findWayPoints(curPose, destPos, obstacles)
     
     % Find the angles between each downsample
     hold on;
-    plot(pathsmooth(1,:),pathsmooth(2,:));
+%     plot(pathsmooth(1,:),pathsmooth(2,:));
     waypoints = zeros(length(pathsmooth)-1, 5);
     for i=1:length(pathsmooth)-1
        waypoints(i,1) = pathsmooth(1,i+1);

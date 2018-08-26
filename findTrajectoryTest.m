@@ -1,14 +1,14 @@
 curPose = Pose(0,0,10,0,0);
-destPose = Pose(0.5,0,0,0,0);
+destPose = Pose(2.5,2.5,10,0,0);
 
 obs1 = Pose(1.3,1.3,0,0,0);
 obs2 = Pose(-1.7,1.7,0,0,0);
 obs3 = Pose(1.5,-1.5,0,0,0);
 obstacles = {obs1, obs2, obs3};
 
-speed = 0.01; % m/s
+speed = 0.05; % m/s
 
-[trajectory, q0_left, q0_right] = findPoseActions(curPose, destPose, obstacles, speed);
+[trajectory, q0_left, q0_right] = findTrajectory(curPose, destPose, obstacles, speed);
 trajectoryFitted = trajectory;
 trajectoryFitted(20,1) = 0;
 customTrajectory = timeseries(trajectoryFitted');
@@ -29,7 +29,7 @@ body.width = 0.145;
 
 load_system('biped_robot');
 in = Simulink.SimulationInput('biped_robot');
-in = in.setModelParameter('StartTime', '0', 'StopTime', num2str(30));
+in = in.setModelParameter('StartTime', '0', 'StopTime', num2str(300));
 in = in.setModelParameter('SimulationMode', 'Normal');
 
 angles_ts = timeseries(trajectory, (0:length(trajectory)-1)*0.01);
